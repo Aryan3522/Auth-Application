@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #f5f5f5;
+      }
+      .container {
+        display: flex;
+        padding: 12px 40px;
+        justify-content: space-between;
+        align-items: center;
+      }
+      #toggleStatusBtn {
+        padding: 20px 40px;
+        border-radius: 8px;
+        border: 1px solid #171717;
+        background-color: #171717;
+        color: #f5f5f5;
+        font-weight: 600;
+        cursor: pointer;
+      }
+      #toggleStatusBtn:hover {
+        background-color: #130068;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Click this button to toggle the user's status.</h1>
+      <div>
+        <button id="toggleStatusBtn">Toggle All Users Status</button>
+
+        <p id="responseMsg"></p>
+      </div>
+    </div>
+
+    <script>
+      document
+        .getElementById("toggleStatusBtn")
+        .addEventListener("click", async () => {
+          const token = localStorage.getItem("token");
+
+          if (!token) {
+            alert("User not authenticated. Please login first.");
+            window.location.href = "/login";
+            return;
+          }
+
+          try {
+            const response = await fetch("/api/users/toggle-status", {
+              method: "POST",
+              headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json",
+              },
+            });
+
+            const result = await response.json();
+
+            if (!response.ok) {
+              throw new Error(result.message || "Request failed");
+            }
+
+            const userText = document.getElementById("responseMsg");
+            userText.innerText = result.message;
+            userText.style.display = "block";
+            setTimeout(() => {
+              userText.style.display = "none";
+            }, 2000);
+          } catch (error) {
+            document.getElementById("responseMsg").innerText = error.message;
+          }
+        });
+    </script>
+  </body>
+</html>

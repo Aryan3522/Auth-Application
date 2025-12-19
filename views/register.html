@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>User Registration</title>
+    <style>
+      body {
+        background-color: #eee;
+      }
+      .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        width: 400px;
+      }
+      input,
+      button {
+        padding: 14px 12px;
+        border-radius: 8px;
+        border: 1px solid #171717;
+      }
+      button {
+        background: #000;
+        color: #fff;
+        cursor: pointer;
+      }
+      #message {
+        margin-top: 10px;
+        font-size: 14px;
+      }
+      #login{
+        width: 400px;
+        margin-top: 8px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h2>Register User</h2>
+      <form id="registerForm">
+        <input name="name" placeholder="Name" required />
+        <input name="email" type="email" placeholder="Email" required />
+        <input
+          name="password"
+          type="password"
+          placeholder="Password"
+          required
+        />
+        <input name="address" placeholder="Address" required />
+
+        <!-- Hidden fields for location -->
+        <input type="hidden" name="latitude" id="latitude" />
+        <input type="hidden" name="longitude" id="longitude" />
+
+        <button type="submit">Register</button>
+      </form>
+      <button id="login">login</button>
+
+      <p id="message"></p>
+    </div>
+
+    <script>
+      // Get location
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            document.getElementById("latitude").value =
+              position.coords.latitude;
+            document.getElementById("longitude").value =
+              position.coords.longitude;
+          },
+          () => {
+            console.warn("Location permission denied");
+          }
+        );
+      }
+
+      // Handle form submit
+      document
+        .getElementById("registerForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+
+          const formData = new FormData(e.target);
+          const payload = Object.fromEntries(formData.entries());
+
+          try {
+            const response = await fetch("/api/register", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(payload),
+            });
+
+            const result = await response.json();
+
+            if (!response.ok) {
+              throw new Error(result.message || "Registration failed");
+            }
+
+            document.getElementById("message").innerText =
+              "Registration successful! Redirecting...";
+
+            // Redirect to home
+            setTimeout(() => {
+              window.location.href = "/login";
+            }, 800);
+          } catch (error) {
+            document.getElementById("message").innerText = error.message;
+          }
+        });
+      document.getElementById("login").onclick = () => {
+        window.location.href = "/login";
+      };
+    </script>
+  </body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>User Login</title>
+    <style>
+      body {
+        background-color: #eee;
+      }
+      .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        width: 400px;
+      }
+      input,
+      button {
+        padding: 14px 12px;
+        border-radius: 8px;
+        border: 1px solid #171717;
+      }
+      button {
+        background: #000;
+        color: #fff;
+        cursor: pointer;
+      }
+      #message {
+        margin-top: 10px;
+      }
+      #register{
+        margin-top: 8px;
+        width: 400px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h2>Login</h2>
+      <form id="loginForm">
+        <input name="email" type="email" placeholder="Email" required />
+        <input name="password" type="password" placeholder="Password" required />
+        <button type="submit">Login</button>
+      </form>
+      <button id="register">Register</button>
+
+      <p id="message"></p>
+    </div>
+
+    <script>
+      document
+        .getElementById("loginForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+
+          const payload = Object.fromEntries(
+            new FormData(e.target).entries()
+          );
+
+          try {
+            const response = await fetch("/api/login", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(payload),
+            });
+
+            const contentType = response.headers.get("content-type");
+            if (!contentType || !contentType.includes("application/json")) {
+              throw new Error("Server did not return JSON");
+            }
+
+            const result = await response.json();
+
+            if (!response.ok) {
+              throw new Error(result.message);
+            }
+
+            localStorage.setItem("token", result.data.token);
+
+            document.getElementById("message").innerText =
+              "Login successful! Redirecting...";
+
+            setTimeout(() => {
+              window.location.href = "/home";
+            }, 800);
+          } catch (error) {
+            document.getElementById("message").innerText = error.message;
+          }
+        });
+        document.getElementById('register').onclick = ()=>{
+          window.location.href = "/register";
+        }
+    </script>
+  </body>
+</html>
