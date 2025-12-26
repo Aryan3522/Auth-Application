@@ -163,14 +163,3 @@ Aryan Hooda
 Full Stack Developer | Backend Enthusiast
 
 If you found this project helpful, give it a ⭐!
-
-
----
-
-If you want, I can also:
-✅ Add a **Postman collection** section  
-✅ Generate **Swagger docs**  
-✅ Create a **Docker setup**  
-✅ Rewrite this for enterprise README tone  
-
-Just say the word — let’s make this repo stand out.
