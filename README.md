@@ -21,6 +21,7 @@ The User Status Toggle API demonstrates:
 The system allows authenticated users to toggle the status of all users in a single atomic operation using MongoDB bulk updates.
 
 <hr />
+
 ## 🚀 Core Capabilities
 
 #### ✅ User Registration
@@ -40,6 +41,7 @@ The system allows authenticated users to toggle the status of all users in a sin
 #### ⚙️ Production-ready configuration model
 
 <hr />
+
 ## 🧠 Bulk Toggle Logic
 
 When the toggle endpoint is triggered:
@@ -70,6 +72,7 @@ MongoDB (via Mongoose)
 ```
 
 ## 📁 Project Structure
+
 ```text
 ├── src/
 │   ├── controllers/
@@ -83,7 +86,9 @@ MongoDB (via Mongoose)
 ```
 
 <hr />
+
 ## 🛠 Technology Stack
+
 | Layer          | Technology |
 | -------------- | ---------- |
 | Runtime        | Node.js    |
@@ -94,7 +99,9 @@ MongoDB (via Mongoose)
 | Security       | bcrypt     |
 
 <hr />
+
 ## ⚙️ Installation & Setup
+
 #### 1️⃣ Clone Repository
 git clone https://github.com/your-username/user-status-toggle-api.git
 cd user-status-toggle-api
@@ -111,6 +118,7 @@ MONGO_URI=********************************
 JWT_SECRET=super_secure_jwt_secret
 
 #### 🔎 Environment Variables Explained
+
 | Variable   | Description                                |
 | ---------- | ------------------------------------------ |
 | PORT       | Application runtime port                   |
@@ -124,7 +132,9 @@ npm start
 http://localhost:5000
 
 <hr />
+
 ## 🔗 API Endpoints
+
 #### 📝 User Signup
 
 POST /api/auth/signup
@@ -158,6 +168,7 @@ Authorization: Bearer <jwt_token>
 Performs a bulk update across all user records.
 
 <hr />
+
 ## 🔒 Security Model
 
 #### 🔐 Passwords hashed using bcrypt
@@ -171,6 +182,7 @@ Performs a bulk update across all user records.
 #### 🚫 No sensitive data stored in source code
 
 <hr />
+
 ## 🧪 Expected Flow
 
 User registers
@@ -182,6 +194,7 @@ User calls protected toggle endpoint
 All users’ statuses flip via bulk update
 
 <hr />
+
 ## 📦 Production Considerations
 
 Before deploying:
@@ -201,6 +214,7 @@ Implement rate limiting (recommended)
 Add input validation middleware
 
 <hr />
+
 ## 🤝 Contributing
 
 This repository is open to contributions.
@@ -222,6 +236,7 @@ You can contribute to:
 #### 🧱 Architecture refactoring
 
 ## 📌 Contribution Workflow
+
 1️⃣ Fork the repository
 2️⃣ Create a feature branch
 git checkout -b feature/your-feature-name
@@ -248,7 +263,7 @@ Before submitting a PR:
 
 All contributions must maintain production stability.
 
-📢 Opening Issues
+## 📢 Opening Issues
 
 Currently, there are no open issues.
 
@@ -267,6 +282,7 @@ Please open an issue first to discuss your proposal before implementation.
 Collaborative discussion ensures consistency and quality.
 
 <hr />
+
 ## 📈 Roadmap
 
 Planned Improvements:
@@ -288,12 +304,14 @@ Planned Improvements:
 🛡 Rate Limiting & Security Enhancements
 
 <hr />
+
 ## 👨‍💻 Maintainer
 
 Aryan Hooda
 Full Stack Developer | Backend Engineer
 
 <hr />
+
 ## ⭐ Support
 
 If this project helps you:
