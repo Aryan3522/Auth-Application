@@ -52,7 +52,7 @@ If the majority of users are inactive → all users become active
 ✔ Designed for production reliability
 
 <hr />
-## 🏗 System Architecture
+## 🏗 System Architecture <br/>
 ```text
 Client
    │
