@@ -25,9 +25,9 @@ app.get("/register", (req, res) => {
 
 // Routes
 app.use("/api", require("./routes/auth-routes.js"));
-app.use("/api", require("./routes/userRoutes"));
+app.use("/api", require("./routes/userRoutes.js"));
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () =>
-  console.log(`Server running on http://localhost:${PORT}`)
+  console.log(`Server running on http://localhost:${PORT}`),
 );

@@ -362,6 +362,37 @@
       }
 
       document
+        .getElementById("deleteAccountBtn")
+        .addEventListener("click", async () => {
+          if (
+            !confirm(
+              "Are you sure you want to delete your account? This action cannot be undone.",
+            )
+          )
+            return;
+
+          try {
+            const res = await fetch("/api/users/delete-account", {
+              method: "DELETE",
+              headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+              },
+            });
+
+            const result = await res.json();
+            console.log(result);
+
+            if (!res.ok) throw new Error(result.message);
+
+            localStorage.removeItem("token");
+            showMessage(result.message, true);
+
+            window.location.href = "/register";
+          } catch (err) {
+            showMessage(err.message, true);
+          }
+        });
+      document
         .getElementById("toggleStatusBtn")
         .addEventListener("click", async () => {
           try {

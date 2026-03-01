@@ -178,3 +178,29 @@ exports.getAllUsers = async (req, res) => {
     });
   }
 };
+
+exports.deleteAccount = async (req, res) => {
+  try {
+    const userId = req.user.id;
+
+    const deletedUser = await User.findByIdAndDelete(userId);
+
+    if (!deletedUser) {
+      return res.status(404).json({
+        status_code: 404,
+        message: "User not found",
+      });
+    }
+
+    return res.status(200).json({
+      status_code: 200,
+      message: "Account deleted successfully",
+    });
+  } catch (error) {
+    console.error("Delete account error:", error);
+    return res.status(500).json({
+      status_code: 500,
+      message: "Internal server error",
+    });
+  }
+};
