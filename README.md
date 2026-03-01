@@ -3,6 +3,7 @@
 A secure, production-ready REST API built with Node.js, Express.js, and MongoDB that enables authenticated users to perform bulk status operations across the entire user base.
 
 <hr />
+
 ## 📌 Overview
 
 The User Status Toggle API demonstrates:
