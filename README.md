@@ -1,45 +1,45 @@
-🔐 User Status Toggle API
+# 🔐 User Status Toggle API
 
 A secure, production-ready REST API built with Node.js, Express.js, and MongoDB that enables authenticated users to perform bulk status operations across the entire user base.
 
 <hr />
-📌 Overview
+## 📌 Overview
 
 The User Status Toggle API demonstrates:
 
-🔐 Secure JWT authentication
+#### 🔐 Secure JWT authentication
 
-⚡ Optimized bulk database operations
+#### ⚡ Optimized bulk database operations
 
-🧱 Scalable REST architecture
+#### 🧱 Scalable REST architecture
 
-🏗 Layered backend structure
+#### 🏗 Layered backend structure
 
-🤝 Open-source contribution readiness
+#### 🤝 Open-source contribution readiness
 
 The system allows authenticated users to toggle the status of all users in a single atomic operation using MongoDB bulk updates.
 
 <hr />
-🚀 Core Capabilities
+## 🚀 Core Capabilities
 
-✅ User Registration
+#### ✅ User Registration
 
-🔑 Secure Login with JWT
+#### 🔑 Secure Login with JWT
 
-🔒 Password Hashing via bcrypt
+#### 🔒 Password Hashing via bcrypt
 
-🛡 Protected Routes via Middleware
+#### 🛡 Protected Routes via Middleware
 
-🔄 Bulk Status Toggle (Active ↔ Inactive)
+#### 🔄 Bulk Status Toggle (Active ↔ Inactive)
 
-📊 MongoDB Aggregation Support
+#### 📊 MongoDB Aggregation Support
 
-🧩 Clean Controller-Based Structure
+#### 🧩 Clean Controller-Based Structure
 
-⚙️ Production-ready configuration model
+#### ⚙️ Production-ready configuration model
 
 <hr />
-🧠 Bulk Toggle Logic
+## 🧠 Bulk Toggle Logic
 
 When the toggle endpoint is triggered:
 
@@ -52,7 +52,7 @@ If the majority of users are inactive → all users become active
 ✔ Designed for production reliability
 
 <hr />
-🏗 System Architecture
+## 🏗 System Architecture
 Client
    │
    ▼
@@ -64,7 +64,7 @@ Controller Layer
    ▼
 MongoDB (via Mongoose)
 
-📁 Project Structure
+## 📁 Project Structure
 ├── src/
 │   ├── controllers/
 │   ├── models/
@@ -76,7 +76,7 @@ MongoDB (via Mongoose)
 └── README.md
 
 <hr />
-🛠 Technology Stack
+## 🛠 Technology Stack
 | Layer          | Technology |
 | -------------- | ---------- |
 | Runtime        | Node.js    |
@@ -87,37 +87,38 @@ MongoDB (via Mongoose)
 | Security       | bcrypt     |
 
 <hr />
-⚙️ Installation & Setup
-1️⃣ Clone Repository
+## ⚙️ Installation & Setup
+#### 1️⃣ Clone Repository
 git clone https://github.com/your-username/user-status-toggle-api.git
 cd user-status-toggle-api
 
-2️⃣ Install Dependencies
+#### 2️⃣ Install Dependencies
 npm install
 
-3️⃣ Configure Environment Variables
+#### 3️⃣ Configure Environment Variables
 
-Create a .env file in the root directory:
+#### Create a .env file in the root directory:
+
 PORT=5000
 MONGO_URI=********************************
 JWT_SECRET=super_secure_jwt_secret
 
-🔎 Environment Variables Explained
+#### 🔎 Environment Variables Explained
 | Variable   | Description                                |
 | ---------- | ------------------------------------------ |
 | PORT       | Application runtime port                   |
 | MONGO_URI  | MongoDB connection string (local or cloud) |
 | JWT_SECRET | Secret key used for signing JWT tokens     |
 
-4️⃣ Start Application
+#### 4️⃣ Start Application
 npm start
 
-Server will be available at:
+###### Server will be available at:
 http://localhost:5000
 
 <hr />
-🔗 API Endpoints
-📝 User Signup
+## 🔗 API Endpoints
+#### 📝 User Signup
 
 POST /api/auth/signup
 {
@@ -125,7 +126,7 @@ POST /api/auth/signup
   "password": "password123"
 }
 
-🔐 User Login
+#### 🔐 User Login
 
 POST /api/auth/login
 {
@@ -137,7 +138,7 @@ Returns:
   "token": "jwt_token_here"
 }
 
-⚡ Toggle All Users Status
+#### ⚡ Toggle All Users Status
 
 POST /api/users/toggle-status
 
@@ -148,20 +149,20 @@ Authorization: Bearer <jwt_token>
 Performs a bulk update across all user records.
 
 <hr />
-🔒 Security Model
+## 🔒 Security Model
 
-🔐 Passwords hashed using bcrypt
+#### 🔐 Passwords hashed using bcrypt
 
-🛡 JWT secures protected routes
+#### 🛡 JWT secures protected routes
 
-🧠 Middleware validates tokens before controller execution
+#### 🧠 Middleware validates tokens before controller execution
 
-🔑 Secrets stored only in environment variables
+#### 🔑 Secrets stored only in environment variables
 
-🚫 No sensitive data stored in source code
+#### 🚫 No sensitive data stored in source code
 
 <hr />
-🧪 Expected Flow
+## 🧪 Expected Flow
 
 User registers
 
@@ -172,7 +173,7 @@ User calls protected toggle endpoint
 All users’ statuses flip via bulk update
 
 <hr />
-📦 Production Considerations
+## 📦 Production Considerations
 
 Before deploying:
 
@@ -191,27 +192,27 @@ Implement rate limiting (recommended)
 Add input validation middleware
 
 <hr />
-🤝 Contributing
+## 🤝 Contributing
 
 This repository is open to contributions.
 
 You can contribute to:
 
-🚀 Backend performance improvements
+#### 🚀 Backend performance improvements
 
-🔐 Security hardening
+#### 🔐 Security hardening
 
-🎨 UI enhancements
+#### 🎨 UI enhancements
 
-🧪 Test coverage
+#### 🧪 Test coverage
 
-📦 DevOps improvements
+#### 📦 DevOps improvements
 
-📘 Documentation clarity
+####📘 Documentation clarity
 
-🧱 Architecture refactoring
+#### 🧱 Architecture refactoring
 
-📌 Contribution Workflow
+## 📌 Contribution Workflow
 1️⃣ Fork the repository
 2️⃣ Create a feature branch
 git checkout -b feature/your-feature-name
@@ -257,7 +258,7 @@ Please open an issue first to discuss your proposal before implementation.
 Collaborative discussion ensures consistency and quality.
 
 <hr />
-📈 Roadmap
+## 📈 Roadmap
 
 Planned Improvements:
 
@@ -278,13 +279,13 @@ Planned Improvements:
 🛡 Rate Limiting & Security Enhancements
 
 <hr />
-👨‍💻 Maintainer
+## 👨‍💻 Maintainer
 
 Aryan Hooda
 Full Stack Developer | Backend Engineer
 
 <hr />
-⭐ Support
+## ⭐ Support
 
 If this project helps you:
 
