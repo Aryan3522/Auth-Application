@@ -103,8 +103,8 @@ MongoDB (via Mongoose)
 ## ⚙️ Installation & Setup
 
 #### 1️⃣ Clone Repository
-git clone https://github.com/your-username/user-status-toggle-api.git
-cd user-status-toggle-api
+git clone https://github.com/your-username/Auth-Application.git <br/>
+cd Auth-Application
 
 #### 2️⃣ Install Dependencies
 npm install
@@ -136,27 +136,28 @@ http://localhost:5000
 ## 🔗 API Endpoints
 
 #### 📝 User Signup
-
+```text
 POST /api/auth/signup
 {
   "email": "john@example.com",
   "password": "password123"
 }
-
+```
 #### 🔐 User Login
-
+```text
 POST /api/auth/login
 {
   "email": "john@example.com",
   "password": "password123"
 }
-<br/>
+```
 Returns:
+```text
 <br/>
 {
   "token": "jwt_token_here"
 }
-
+```
 #### ⚡ Toggle All Users Status
 
 POST /api/users/toggle-status
