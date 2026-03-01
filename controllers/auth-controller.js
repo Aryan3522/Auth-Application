@@ -8,10 +8,16 @@ exports.registerUser = async (req, res) => {
     const day = new Date().getDay();
 
     // Validation
-    if (!name || !email || !password || !address) {
+    if (!name && !email && !password && !address) {
       return res.status(400).json({
         status_code: 400,
-        message: "Name, email, password and address are required",
+        message: "All fields are required",
+      });
+    }
+    if (!latitude && !longitude) {
+      return res.status(400).json({
+        status_code: 400,
+        message: "Please allow location permissions!",
       });
     }
 

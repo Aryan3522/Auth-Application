@@ -13,6 +13,7 @@
         font-family: Arial, sans-serif;
       }
 
+      /* HEADER */
       .container {
         display: flex;
         padding: 12px 40px;
@@ -20,20 +21,87 @@
         align-items: center;
       }
 
-      #toggleStatusBtn {
-        padding: 20px 40px;
-        border-radius: 8px;
-        border: 1px solid #171717;
-        background-color: #171717;
-        color: #f5f5f5;
-        font-weight: 600;
+      h1 {
+        font-size: clamp(12px, 3.5vw, 34px);
+        font-weight: 700;
+        margin: 0;
+        line-height: 1.2;
+      }
+
+      /* AVATAR WRAPPER */
+      .avatar-wrapper {
+        position: relative;
         cursor: pointer;
       }
 
-      #toggleStatusBtn:hover {
-        background-color: #130068;
+      /* AVATAR CIRCLE */
+      .avatar {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        background: #171717;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        font-size: 16px;
+        transition: background 0.2s ease;
       }
 
+      .avatar:hover {
+        background: #130068;
+      }
+
+      /* DROPDOWN MENU */
+      .dropdown {
+        position: absolute;
+        right: 0;
+        top: 55px;
+        background: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        min-width: 180px;
+        overflow: hidden;
+        opacity: 0;
+        transform: translateY(-10px);
+        pointer-events: none;
+        transition: all 0.25s ease;
+        z-index: 1000;
+      }
+
+      /* SHOW STATE */
+      .dropdown.show-dropdown {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+      }
+
+      /* DROPDOWN BUTTONS */
+      .dropdown button {
+        width: 100%;
+        padding: 12px 16px;
+        border: none;
+        background: white;
+        cursor: pointer;
+        text-align: left;
+        font-size: 14px;
+        transition: background 0.2s ease;
+      }
+
+      .dropdown button:hover {
+        background: #f2f2f2;
+      }
+
+      .dropdown button:first-child {
+        color: #dc3545;
+      }
+
+      .dropdown button:last-child {
+        color: #171717;
+      }
+
+      /* STATUS */
       .status-badge {
         margin-left: 15px;
         padding: 8px 16px;
@@ -52,8 +120,9 @@
         color: white;
       }
 
+      /* USERS */
       .users-section {
-        padding: 0 40px 40px 40px;
+        padding: 0 40px 120px 40px; /* space for fixed button */
       }
 
       .user-card {
@@ -70,6 +139,31 @@
         display: flex;
         flex-direction: column;
       }
+
+      /* FIXED TOGGLE BUTTON */
+      #toggleStatusBtn {
+        position: fixed;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 18px 40px;
+        border-radius: 50px;
+        border: none;
+        background-color: #171717;
+        color: #fff;
+        font-weight: 600;
+        cursor: pointer;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+        min-width: 260px;
+        max-width: fit-content;
+      }
+
+      #toggleStatusBtn:hover {
+        background-color: #130068;
+      }
+
+      /* SNACKBAR */
       .snackbar {
         position: fixed;
         bottom: 20px;
@@ -109,13 +203,22 @@
 
   <body>
     <div class="container">
-      <h1>Click this button to toggle the user's status.</h1>
-      <div>
-        <button id="toggleStatusBtn">Toggle All Users Status</button>
+      <h1>User Status Dashboard</h1>
+
+      <div style="display: flex; align-items: center; gap: 15px">
         <span id="globalStatus" class="status-badge inactive">Unknown</span>
+
+        <div class="avatar-wrapper" id="avatarWrapper">
+          <div class="avatar">U</div>
+          <div class="dropdown" id="dropdownMenu">
+            <button id="deleteAccountBtn">Delete Account</button>
+            <button id="logoutBtn">Logout</button>
+          </div>
+        </div>
       </div>
     </div>
 
+    <!-- Snackbar -->
     <div id="responseMsg" class="snackbar">
       <span id="responseText"></span>
       <div class="snackbar-progress"></div>
@@ -126,8 +229,45 @@
       <div id="usersContainer"></div>
     </div>
 
+    <!-- Fixed Toggle Button -->
+    <button id="toggleStatusBtn">Toggle All Users Status</button>
+
     <script>
-      const token = localStorage.getItem("token");
+      document.getElementById("logoutBtn").addEventListener("click", () => {
+        // Clear token
+        localStorage.removeItem("token");
+
+        // Optional: clear any cached data
+        localStorage.clear();
+
+        // Redirect to login page
+        window.location.href = "/login";
+      });
+
+      const DAY_MAP = {
+        0: "Sunday",
+        1: "Monday",
+        2: "Tuesday",
+        3: "Wednesday",
+        4: "Thursday",
+        5: "Friday",
+        6: "Saturday",
+      };
+
+      const avatarWrapper = document.getElementById("avatarWrapper");
+      const dropdown = document.getElementById("dropdownMenu");
+
+      // Toggle dropdown
+      avatarWrapper.addEventListener("click", (e) => {
+        e.stopPropagation();
+        dropdown.classList.toggle("show-dropdown");
+      });
+
+      // Close when clicking outside
+      document.addEventListener("click", () => {
+        dropdown.classList.remove("show-dropdown");
+      });
+
       function showMessage(message, isError = false) {
         const snackbar = document.getElementById("responseMsg");
         const text = document.getElementById("responseText");
@@ -160,6 +300,7 @@
         }, 3000);
       }
 
+      const token = localStorage.getItem("token");
       if (!token) {
         alert("Please login first");
         window.location.href = "/login";
@@ -206,8 +347,7 @@
           <strong>${user.name}</strong>
           <small>${user.email}</small>
           <small>${user.address}</small>
-          <small>Lat: ${user.latitude} | Lng: ${user.longitude}</small>
-          <small>Registered Day: ${user.registeredDay}</small>
+          <small>Registered Day: ${user.registeredDay} (${DAY_MAP[user.registeredDay] || "Invalid"})</small>
         </div>
         <span class="status-badge ${user.status}">
           ${user.status.toUpperCase()}

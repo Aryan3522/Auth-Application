@@ -38,6 +38,41 @@
         width: 400px;
         margin-top: 8px;
       }
+      /* SNACKBAR */
+      .snackbar {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        min-width: 280px;
+        max-width: 350px;
+        background: #1e1e1e;
+        color: #fff;
+        padding: 14px 18px 18px 18px;
+        border-radius: 8px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        font-weight: 500;
+        font-size: 14px;
+        opacity: 0;
+        transform: translateY(-20px);
+        transition: all 0.3s ease;
+        overflow: hidden;
+        z-index: 9999;
+      }
+
+      .snackbar.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .snackbar-progress {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 4px;
+        background: #4caf50;
+        width: 100%;
+        transition: width linear;
+      }
     </style>
   </head>
 
@@ -48,15 +83,10 @@
         You Must Allow Location Permissions in order to create your ID
       </p>
       <form id="registerForm">
-        <input name="name" placeholder="Name" required />
-        <input name="email" type="email" placeholder="Email" required />
-        <input
-          name="password"
-          type="password"
-          placeholder="Password"
-          required
-        />
-        <input name="address" placeholder="Address" required />
+        <input name="name" placeholder="Name" />
+        <input name="email" type="email" placeholder="Email" />
+        <input name="password" type="password" placeholder="Password" />
+        <input name="address" placeholder="Address" />
 
         <!-- Hidden fields for location -->
         <input type="hidden" name="latitude" id="latitude" />
@@ -66,10 +96,46 @@
       </form>
       <button id="login">login</button>
 
-      <p id="message"></p>
+      <!-- Snackbar -->
+      <div id="responseMsg" class="snackbar">
+        <span id="responseText"></span>
+        <div class="snackbar-progress"></div>
+      </div>
     </div>
 
     <script>
+      function showMessage(message, isError = false) {
+        const snackbar = document.getElementById("responseMsg");
+        const text = document.getElementById("responseText");
+        const progress = snackbar.querySelector(".snackbar-progress");
+
+        text.innerText = message;
+
+        // Change color based on error/success
+        snackbar.style.background = isError ? "#dc3545" : "#1e1e1e";
+        progress.style.background = isError ? "#ffb3b3" : "#4caf50";
+
+        snackbar.classList.add("show");
+
+        // Reset progress
+        progress.style.transition = "none";
+        progress.style.width = "100%";
+
+        setTimeout(() => {
+          progress.style.transition = "width 3s linear";
+          progress.style.width = "0%";
+        }, 50);
+
+        // Clear previous timer
+        if (snackbar.hideTimeout) {
+          clearTimeout(snackbar.hideTimeout);
+        }
+
+        snackbar.hideTimeout = setTimeout(() => {
+          snackbar.classList.remove("show");
+        }, 3000);
+      }
+
       // Get location
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
@@ -81,6 +147,7 @@
           },
           () => {
             console.warn("Location permission denied");
+            showMessage("Please Allow Location Permissions!", true);
           },
         );
       }
@@ -109,15 +176,14 @@
               throw new Error(result.message || "Registration failed");
             }
 
-            document.getElementById("message").innerText =
-              "Registration successful! Redirecting...";
+            showMessage(result.message);
 
             // Redirect to home
             setTimeout(() => {
               window.location.href = "/login";
             }, 800);
-          } catch (error) {
-            document.getElementById("message").innerText = error.message;
+          } catch (err) {
+            showMessage(err.message, true);
           }
         });
       document.getElementById("login").onclick = () => {
