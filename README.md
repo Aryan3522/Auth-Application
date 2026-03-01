@@ -52,7 +52,9 @@ If the majority of users are inactive → all users become active
 ✔ Designed for production reliability
 
 <hr />
-## 🏗 System Architecture <br/>
+
+## 🏗 System Architecture
+
 ```text
 Client
    │
@@ -67,6 +69,7 @@ MongoDB (via Mongoose)
 ```
 
 ## 📁 Project Structure
+```text
 ├── src/
 │   ├── controllers/
 │   ├── models/
@@ -76,6 +79,7 @@ MongoDB (via Mongoose)
 ├── .env
 ├── package.json
 └── README.md
+```
 
 <hr />
 ## 🛠 Technology Stack
