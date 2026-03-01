@@ -153,7 +153,6 @@ POST /api/auth/login
 ```
 Returns:
 ```text
-<br/>
 {
   "token": "jwt_token_here"
 }
