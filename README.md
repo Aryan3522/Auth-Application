@@ -1,53 +1,57 @@
 🔐 User Status Toggle API
 
-A secure, production-ready REST API built with Node.js, Express, and MongoDB that enables authenticated users to perform bulk status operations across the entire user base.
+A secure, production-ready REST API built with Node.js, Express.js, and MongoDB that enables authenticated users to perform bulk status operations across the entire user base.
 
-This repository is open-source and actively open to contributions.
-
+<hr />
 📌 Overview
 
-User Status Toggle API demonstrates:
+The User Status Toggle API demonstrates:
 
-Secure JWT authentication
+🔐 Secure JWT authentication
 
-Bulk database operations using MongoDB
+⚡ Optimized bulk database operations
 
-Scalable REST architecture
+🧱 Scalable REST architecture
 
-Production-oriented backend structure
+🏗 Layered backend structure
 
-Contribution-ready open source design
+🤝 Open-source contribution readiness
 
-The system allows authenticated users to toggle the status of all users in a single operation using optimized MongoDB bulk updates.
+The system allows authenticated users to toggle the status of all users in a single atomic operation using MongoDB bulk updates.
 
+<hr />
 🚀 Core Capabilities
 
-User Registration
+✅ User Registration
 
-Secure Login with JWT
+🔑 Secure Login with JWT
 
-Password Hashing via bcrypt
+🔒 Password Hashing via bcrypt
 
-Protected Routes via Middleware
+🛡 Protected Routes via Middleware
 
-Bulk Status Toggle (Active ↔ Inactive)
+🔄 Bulk Status Toggle (Active ↔ Inactive)
 
-MongoDB Aggregation Support
+📊 MongoDB Aggregation Support
 
-Clean Controller-Service Structure
+🧩 Clean Controller-Based Structure
 
-Production-ready configuration model
+⚙️ Production-ready configuration model
 
+<hr />
 🧠 Bulk Toggle Logic
 
 When the toggle endpoint is triggered:
 
-If majority users are active → all users become inactive
+If the majority of users are active → all users become inactive
 
-If majority users are inactive → all users become active
+If the majority of users are inactive → all users become active
 
-The operation executes in a single atomic bulk update for efficiency and scalability.
+✔ Executed via a single bulk update
+✔ Optimized for scalability
+✔ Designed for production reliability
 
+<hr />
 🏗 System Architecture
 Client
    │
@@ -60,8 +64,7 @@ Controller Layer
    ▼
 MongoDB (via Mongoose)
 
-The application follows a layered structure:
-
+📁 Project Structure
 ├── src/
 │   ├── controllers/
 │   ├── models/
@@ -71,65 +74,70 @@ The application follows a layered structure:
 ├── .env
 ├── package.json
 └── README.md
+
+<hr />
 🛠 Technology Stack
-Layer	Technology
-Runtime	Node.js
-Framework	Express.js
-Database	MongoDB
-ODM	Mongoose
-Authentication	JWT
-Security	bcrypt
+| Layer          | Technology |
+| -------------- | ---------- |
+| Runtime        | Node.js    |
+| Framework      | Express.js |
+| Database       | MongoDB    |
+| ODM            | Mongoose   |
+| Authentication | JWT        |
+| Security       | bcrypt     |
+
+<hr />
 ⚙️ Installation & Setup
-1. Clone Repository
+1️⃣ Clone Repository
 git clone https://github.com/your-username/user-status-toggle-api.git
 cd user-status-toggle-api
-2. Install Dependencies
+
+2️⃣ Install Dependencies
 npm install
-3. Configure Environment Variables
+
+3️⃣ Configure Environment Variables
 
 Create a .env file in the root directory:
-
 PORT=5000
 MONGO_URI=********************************
 JWT_SECRET=super_secure_jwt_secret
-Environment Variables Explained
-Variable	Description
-PORT	Application runtime port
-MONGO_URI	MongoDB connection string (local or cloud)
-JWT_SECRET	Secret key used for signing JWT tokens
 
-⚠️ Do not commit .env to version control.
+🔎 Environment Variables Explained
+| Variable   | Description                                |
+| ---------- | ------------------------------------------ |
+| PORT       | Application runtime port                   |
+| MONGO_URI  | MongoDB connection string (local or cloud) |
+| JWT_SECRET | Secret key used for signing JWT tokens     |
 
-4. Start Application
+4️⃣ Start Application
 npm start
 
 Server will be available at:
-
 http://localhost:5000
+
+<hr />
 🔗 API Endpoints
-User Signup
+📝 User Signup
 
 POST /api/auth/signup
-
 {
   "email": "john@example.com",
   "password": "password123"
 }
-User Login
+
+🔐 User Login
 
 POST /api/auth/login
-
 {
   "email": "john@example.com",
   "password": "password123"
 }
-
 Returns:
-
 {
   "token": "jwt_token_here"
 }
-Toggle All Users Status
+
+⚡ Toggle All Users Status
 
 POST /api/users/toggle-status
 
@@ -139,33 +147,36 @@ Authorization: Bearer <jwt_token>
 
 Performs a bulk update across all user records.
 
-🔐 Security Model
+<hr />
+🔒 Security Model
 
-Passwords are hashed using bcrypt
+🔐 Passwords hashed using bcrypt
 
-JWT secures all protected routes
+🛡 JWT secures protected routes
 
-Middleware validates token before execution
+🧠 Middleware validates tokens before controller execution
 
-Sensitive credentials are environment-based
+🔑 Secrets stored only in environment variables
 
-No secrets are stored in source code
+🚫 No sensitive data stored in source code
 
+<hr />
 🧪 Expected Flow
 
 User registers
 
-User logs in and receives JWT
+User logs in → receives JWT
 
 User calls protected toggle endpoint
 
 All users’ statuses flip via bulk update
 
+<hr />
 📦 Production Considerations
 
 Before deploying:
 
-Use strong JWT secret
+Use a strong JWT secret
 
 Use a secure MongoDB URI
 
@@ -175,115 +186,108 @@ Configure proper logging
 
 Validate environment variables
 
-Add rate limiting (recommended)
+Implement rate limiting (recommended)
 
 Add input validation middleware
 
+<hr />
 🤝 Contributing
 
-This project is open to contributions.
+This repository is open to contributions.
 
-If you would like to enhance:
+You can contribute to:
 
-Backend performance
+🚀 Backend performance improvements
 
-Security hardening
+🔐 Security hardening
 
-UI improvements
+🎨 UI enhancements
 
-Test coverage
+🧪 Test coverage
 
-DevOps setup
+📦 DevOps improvements
 
-Documentation clarity
+📘 Documentation clarity
 
-Architecture refactor
+🧱 Architecture refactoring
 
-You are welcome to contribute.
-
-Contribution Guidelines
-
-Fork the repository
-
-Create a feature branch
-
+📌 Contribution Workflow
+1️⃣ Fork the repository
+2️⃣ Create a feature branch
 git checkout -b feature/your-feature-name
-
-Implement changes
-
-Test the full application flow
-
-Verify production readiness
-
-Submit a Pull Request
-
-Production Validation Requirement
+3️⃣ Implement changes
+4️⃣ Test thoroughly
+5️⃣ Submit a Pull Request
+✅ Production Validation Requirement
 
 Before submitting a PR:
 
-Ensure authentication works
+✔ Ensure authentication flow works
 
-Ensure toggle logic remains consistent
+✔ Ensure toggle logic remains correct
 
-Ensure no breaking API changes
+✔ Ensure no breaking API changes
 
-Test with real MongoDB instance
+✔ Test with a real MongoDB instance
 
-Confirm environment variables are not hardcoded
+✔ Confirm environment variables are not hardcoded
 
-Validate error handling
+✔ Validate proper error handling
 
-Confirm no sensitive data exposure
+✔ Confirm no sensitive data exposure
 
-Contributions must maintain production stability.
+All contributions must maintain production stability.
 
-Opening Issues
+📢 Opening Issues
 
-There are currently no open issues.
+Currently, there are no open issues.
 
 If you would like to:
 
-Modify UI
+Improve UI
 
-Improve server logic
+Enhance server logic
 
-Add features
+Add new features
 
 Refactor architecture
 
-Open an issue first to discuss the proposal before implementation.
+Please open an issue first to discuss your proposal before implementation.
 
-Collaborative discussion ensures design consistency.
+Collaborative discussion ensures consistency and quality.
 
+<hr />
 📈 Roadmap
 
 Planned Improvements:
 
-Role-based Access Control (Admin/User)
+🔄 Role-based Access Control (Admin/User)
 
-Analytics Dashboard
+📊 Analytics Dashboard
 
-Unit & Integration Testing
+🧪 Unit & Integration Testing
 
-Swagger / OpenAPI Documentation
+📘 Swagger / OpenAPI Documentation
 
-Docker Support
+🐳 Docker Support
 
-CI/CD Pipeline Integration
+🔁 CI/CD Pipeline Integration
 
-Logging & Monitoring Integration
+📡 Logging & Monitoring
 
-Rate Limiting & Security Enhancements
+🛡 Rate Limiting & Security Enhancements
 
+<hr />
 👨‍💻 Maintainer
 
 Aryan Hooda
 Full Stack Developer | Backend Engineer
 
+<hr />
 ⭐ Support
 
 If this project helps you:
 
-Star the repository.
+Give it a ⭐ on GitHub.
 
 Contributions, feedback, and architectural suggestions are welcome.
