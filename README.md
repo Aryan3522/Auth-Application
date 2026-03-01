@@ -307,8 +307,8 @@ Planned Improvements:
 
 ## 👨‍💻 Maintainer
 
-Aryan Hooda
-Full Stack Developer | Software Engineer
+#### Aryan Hooda
+#### Full Stack Developer | Software Engineer
 
 <hr />
 
