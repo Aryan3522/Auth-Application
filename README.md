@@ -112,11 +112,11 @@ npm install
 #### 3️⃣ Configure Environment Variables
 
 #### Create a .env file in the root directory:
-
-PORT=5000 <br/>
-MONGO_URI=******************************** <br/>
-JWT_SECRET=super_secure_jwt_secret <br/>
-
+```text
+PORT=5000
+MONGO_URI=********************************
+JWT_SECRET=super_secure_jwt_secret
+```
 #### 🔎 Environment Variables Explained
 
 | Variable   | Description                                |
