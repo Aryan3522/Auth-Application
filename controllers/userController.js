@@ -73,7 +73,7 @@ exports.getDistanceFromDestination = async (req, res) => {
       user.latitude,
       user.longitude,
       Number(destLat),
-      Number(destLng)
+      Number(destLng),
     );
 
     return res.status(200).json({
@@ -139,6 +139,36 @@ exports.getUsersByDays = async (req, res) => {
       status_code: 200,
       message: "Users fetched successfully",
       data,
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      status_code: 500,
+      message: "Internal server error",
+    });
+  }
+};
+
+exports.getAllUsers = async (req, res) => {
+  try {
+    const users = await User.find(
+      {},
+      {
+        name: 1,
+        email: 1,
+        address: 1,
+        latitude: 1,
+        longitude: 1,
+        status: 1,
+        registeredDay: 1,
+        _id: 0,
+      },
+    );
+
+    return res.status(200).json({
+      status_code: 200,
+      message: "Users fetched successfully",
+      users,
     });
   } catch (error) {
     console.error(error);

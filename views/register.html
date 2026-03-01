@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
     <title>User Registration</title>
@@ -34,7 +34,7 @@
         margin-top: 10px;
         font-size: 14px;
       }
-      #login{
+      #login {
         width: 400px;
         margin-top: 8px;
       }
@@ -44,6 +44,9 @@
   <body>
     <div class="container">
       <h2>Register User</h2>
+      <p style="padding: 0 40px">
+        You Must Allow Location Permissions in order to create your ID
+      </p>
       <form id="registerForm">
         <input name="name" placeholder="Name" required />
         <input name="email" type="email" placeholder="Email" required />
@@ -78,7 +81,7 @@
           },
           () => {
             console.warn("Location permission denied");
-          }
+          },
         );
       }
 
