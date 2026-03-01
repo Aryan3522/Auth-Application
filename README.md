@@ -231,37 +231,37 @@ You can contribute to:
 
 #### 📦 DevOps improvements
 
-####📘 Documentation clarity
+#### 📘 Documentation clarity
 
 #### 🧱 Architecture refactoring
 
 ## 📌 Contribution Workflow
 
-1️⃣ Fork the repository
-2️⃣ Create a feature branch
-git checkout -b feature/your-feature-name
-3️⃣ Implement changes
-4️⃣ Test thoroughly
-5️⃣ Submit a Pull Request
-✅ Production Validation Requirement
+#### 1️⃣ Fork the repository
+#### 2️⃣ Create a feature branch
+### git checkout -b feature/your-feature-name
+#### 3️⃣ Implement changes
+#### 4️⃣ Test thoroughly
+#### 5️⃣ Submit a Pull Request
+#### ✅ Production Validation Requirement
 
-Before submitting a PR:
+# Before submitting a PR:
 
-✔ Ensure authentication flow works
+## ✔ Ensure authentication flow works
 
-✔ Ensure toggle logic remains correct
+## ✔ Ensure toggle logic remains correct
 
-✔ Ensure no breaking API changes
+## ✔ Ensure no breaking API changes
 
-✔ Test with a real MongoDB instance
+## ✔ Test with a real MongoDB instance
 
-✔ Confirm environment variables are not hardcoded
+## ✔ Confirm environment variables are not hardcoded
 
-✔ Validate proper error handling
+## ✔ Validate proper error handling
 
-✔ Confirm no sensitive data exposure
+## ✔ Confirm no sensitive data exposure
 
-All contributions must maintain production stability.
+# All contributions must maintain production stability.
 
 ## 📢 Opening Issues
 
@@ -287,28 +287,28 @@ Collaborative discussion ensures consistency and quality.
 
 Planned Improvements:
 
-🔄 Role-based Access Control (Admin/User)
+#### 🔄 Role-based Access Control (Admin/User)
 
-📊 Analytics Dashboard
+#### 📊 Analytics Dashboard
 
-🧪 Unit & Integration Testing
+#### 🧪 Unit & Integration Testing
 
-📘 Swagger / OpenAPI Documentation
+#### 📘 Swagger / OpenAPI Documentation
 
-🐳 Docker Support
+#### 🐳 Docker Support
 
-🔁 CI/CD Pipeline Integration
+#### 🔁 CI/CD Pipeline Integration
 
-📡 Logging & Monitoring
+#### 📡 Logging & Monitoring
 
-🛡 Rate Limiting & Security Enhancements
+#### 🛡 Rate Limiting & Security Enhancements
 
 <hr />
 
-## 👨‍💻 Maintainer
+# 👨‍💻 Maintainer
 
-Aryan Hooda
-Full Stack Developer | Backend Engineer
+## Aryan Hooda
+## Full Stack Developer | Software Engineer
 
 <hr />
 
