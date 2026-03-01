@@ -1,165 +1,289 @@
-# 🔐 User Status Toggle API
+🔐 User Status Toggle API
 
-A backend REST API built with **Node.js**, **Express.js**, and **MongoDB** that allows users to **sign up, log in**, and — once authenticated — use a special power to **toggle the status of all users at once**.
+A secure, production-ready REST API built with Node.js, Express, and MongoDB that enables authenticated users to perform bulk status operations across the entire user base.
 
-This project demonstrates secure authentication, role-based actions, and bulk updates in a scalable backend system.
+This repository is open-source and actively open to contributions.
 
----
+📌 Overview
 
-## ✨ Features
+User Status Toggle API demonstrates:
 
-- ✅ User Signup & Login
-- 🔑 JWT-based Authentication
-- 👤 User Status Management (active / inactive)
-- ⚡ Special Power: Toggle status of **all users** with one click
-- 🗄 MongoDB for persistent storage
-- 🧱 Clean REST API architecture
+Secure JWT authentication
 
----
+Bulk database operations using MongoDB
 
-## 🧠 Special Power Logic
+Scalable REST architecture
 
-Once logged in, a user can trigger a toggle action that:
-- If most users are **active**, all become **inactive**
-- If most users are **inactive**, all become **active**
+Production-oriented backend structure
 
-👉 Example:
-- 5 users active → all switch to inactive  
-- 2 users inactive → all switch to active  
+Contribution-ready open source design
 
-This happens in a **single API call** using a bulk update.
+The system allows authenticated users to toggle the status of all users in a single operation using optimized MongoDB bulk updates.
 
----
+🚀 Core Capabilities
 
-## 🛠 Tech Stack
+User Registration
 
-- **Node.js** – Runtime
-- **Express.js** – Web framework
-- **MongoDB** – Database
-- **Mongoose** – ODM
-- **JWT** – Authentication
-- **bcrypt** – Password hashing
+Secure Login with JWT
 
----
+Password Hashing via bcrypt
 
-## 📁 Project Structure
+Protected Routes via Middleware
+
+Bulk Status Toggle (Active ↔ Inactive)
+
+MongoDB Aggregation Support
+
+Clean Controller-Service Structure
+
+Production-ready configuration model
+
+🧠 Bulk Toggle Logic
+
+When the toggle endpoint is triggered:
+
+If majority users are active → all users become inactive
+
+If majority users are inactive → all users become active
+
+The operation executes in a single atomic bulk update for efficiency and scalability.
+
+🏗 System Architecture
+Client
+   │
+   ▼
+Express Router
+   │
+   ▼
+Controller Layer
+   │
+   ▼
+MongoDB (via Mongoose)
+
+The application follows a layered structure:
 
 ├── src/
-│ ├── controllers/
-│ ├── models/
-│ ├── routes/
-│ ├── middleware/
-│ └── app.js
+│   ├── controllers/
+│   ├── models/
+│   ├── routes/
+│   ├── middleware/
+│   └── app.js
 ├── .env
 ├── package.json
 └── README.md
-
----
-
-## ⚙️ Installation & Setup
-
-### 1️⃣ Clone the repository
-
+🛠 Technology Stack
+Layer	Technology
+Runtime	Node.js
+Framework	Express.js
+Database	MongoDB
+ODM	Mongoose
+Authentication	JWT
+Security	bcrypt
+⚙️ Installation & Setup
+1. Clone Repository
 git clone https://github.com/your-username/user-status-toggle-api.git
 cd user-status-toggle-api
-
-2️⃣ Install dependencies
-
+2. Install Dependencies
 npm install
+3. Configure Environment Variables
 
-3️⃣ Setup environment variables
-Create a .env file:
+Create a .env file in the root directory:
 
 PORT=5000
-MONGO_URI=mongodb://127.0.0.1:27017/status_api
-JWT_SECRET=your_super_secret_key
+MONGO_URI=********************************
+JWT_SECRET=super_secure_jwt_secret
+Environment Variables Explained
+Variable	Description
+PORT	Application runtime port
+MONGO_URI	MongoDB connection string (local or cloud)
+JWT_SECRET	Secret key used for signing JWT tokens
 
-4️⃣ Start the server
+⚠️ Do not commit .env to version control.
 
+4. Start Application
 npm start
 
-Server will start at:
+Server will be available at:
 
 http://localhost:5000
-
----
-
 🔗 API Endpoints
+User Signup
 
-📝 Signup
 POST /api/auth/signup
 
 {
   "email": "john@example.com",
   "password": "password123"
 }
+User Login
 
----
-
-🔐 Login
 POST /api/auth/login
 
 {
   "email": "john@example.com",
   "password": "password123"
 }
-➡️ Returns JWT token.
 
-⚡ Toggle All Users Status
+Returns:
 
----
+{
+  "token": "jwt_token_here"
+}
+Toggle All Users Status
 
 POST /api/users/toggle-status
-Requires Authorization: Bearer <token>
-📌 Toggles the status of all users based on current active/inactive count.
 
----
+Requires header:
 
-🔒 Authentication
+Authorization: Bearer <jwt_token>
+
+Performs a bulk update across all user records.
+
+🔐 Security Model
 
 Passwords are hashed using bcrypt
-JWT is used for securing protected routes
-Pass token in headers:
 
-Authorization: Bearer <your_token_here>
+JWT secures all protected routes
 
----
+Middleware validates token before execution
 
-🧪 Example Use Case
+Sensitive credentials are environment-based
 
-User signs up
+No secrets are stored in source code
 
-Logs in and receives JWT
+🧪 Expected Flow
 
-Calls toggle endpoint
+User registers
 
-All users’ statuses are flipped instantly
+User logs in and receives JWT
 
----
+User calls protected toggle endpoint
 
-🚀 Future Enhancements
+All users’ statuses flip via bulk update
 
-🔄 Role-based access (admin/user)
+📦 Production Considerations
 
-📊 Analytics on status changes
+Before deploying:
 
-🧪 Unit & integration tests
+Use strong JWT secret
 
-🐳 Docker support
+Use a secure MongoDB URI
 
-📘 Swagger API docs
+Enable HTTPS in production
 
----
+Configure proper logging
+
+Validate environment variables
+
+Add rate limiting (recommended)
+
+Add input validation middleware
+
 🤝 Contributing
 
-Contributions are welcome!
-Feel free to fork this repo, open issues, and submit PRs.
+This project is open to contributions.
 
----
+If you would like to enhance:
 
-👨‍💻 Author
+Backend performance
+
+Security hardening
+
+UI improvements
+
+Test coverage
+
+DevOps setup
+
+Documentation clarity
+
+Architecture refactor
+
+You are welcome to contribute.
+
+Contribution Guidelines
+
+Fork the repository
+
+Create a feature branch
+
+git checkout -b feature/your-feature-name
+
+Implement changes
+
+Test the full application flow
+
+Verify production readiness
+
+Submit a Pull Request
+
+Production Validation Requirement
+
+Before submitting a PR:
+
+Ensure authentication works
+
+Ensure toggle logic remains consistent
+
+Ensure no breaking API changes
+
+Test with real MongoDB instance
+
+Confirm environment variables are not hardcoded
+
+Validate error handling
+
+Confirm no sensitive data exposure
+
+Contributions must maintain production stability.
+
+Opening Issues
+
+There are currently no open issues.
+
+If you would like to:
+
+Modify UI
+
+Improve server logic
+
+Add features
+
+Refactor architecture
+
+Open an issue first to discuss the proposal before implementation.
+
+Collaborative discussion ensures design consistency.
+
+📈 Roadmap
+
+Planned Improvements:
+
+Role-based Access Control (Admin/User)
+
+Analytics Dashboard
+
+Unit & Integration Testing
+
+Swagger / OpenAPI Documentation
+
+Docker Support
+
+CI/CD Pipeline Integration
+
+Logging & Monitoring Integration
+
+Rate Limiting & Security Enhancements
+
+👨‍💻 Maintainer
 
 Aryan Hooda
-Full Stack Developer | Backend Enthusiast
+Full Stack Developer | Backend Engineer
 
-If you found this project helpful, give it a ⭐!
+⭐ Support
+
+If this project helps you:
+
+Star the repository.
+
+Contributions, feedback, and architectural suggestions are welcome.
