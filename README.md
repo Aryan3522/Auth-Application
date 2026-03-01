@@ -53,6 +53,7 @@ If the majority of users are inactive → all users become active
 
 <hr />
 ## 🏗 System Architecture
+```text
 Client
    │
    ▼
@@ -63,6 +64,7 @@ Controller Layer
    │
    ▼
 MongoDB (via Mongoose)
+```
 
 ## 📁 Project Structure
 ├── src/
@@ -133,7 +135,9 @@ POST /api/auth/login
   "email": "john@example.com",
   "password": "password123"
 }
+<br/>
 Returns:
+<br/>
 {
   "token": "jwt_token_here"
 }
