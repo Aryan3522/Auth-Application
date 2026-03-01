@@ -114,7 +114,7 @@ npm install
 #### Create a .env file in the root directory:
 ```text
 PORT=5000
-MONGO_URI=********************************
+MONGO_URI=mongodb+srv://username:password@cluster0.mongodb.net/dbname
 JWT_SECRET=super_secure_jwt_secret
 ```
 #### 🔎 Environment Variables Explained
