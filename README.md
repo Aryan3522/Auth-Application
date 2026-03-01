@@ -305,10 +305,10 @@ Planned Improvements:
 
 <hr />
 
-# 👨‍💻 Maintainer
+## 👨‍💻 Maintainer
 
-## Aryan Hooda
-## Full Stack Developer | Software Engineer
+Aryan Hooda
+Full Stack Developer | Software Engineer
 
 <hr />
 
