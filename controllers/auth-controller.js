@@ -21,6 +21,19 @@ exports.registerUser = async (req, res) => {
       });
     }
 
+    // Ensure email and password are non-empty strings to prevent NoSQL injection
+    if (
+      typeof email !== "string" ||
+      typeof password !== "string" ||
+      email.trim() === "" ||
+      password.trim() === ""
+    ) {
+      return res.status(400).json({
+        status_code: 400,
+        message: "Email and password are required",
+      });
+    }
+
     // Check existing user
     const userExists = await User.findOne({ email });
     if (userExists) {
