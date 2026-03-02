@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const path = require("path");
 const connectDB = require("./config/db");
+const rateLimit = require("express-rate-limit");
 
 const app = express();
 
@@ -12,14 +13,20 @@ connectDB();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Rate limiting for HTML routes
+const htmlLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // limit each IP to 100 requests per windowMs
+});
+
 // Serve HTML
-app.get("/", (req, res) => {
+app.get("/", htmlLimiter, (req, res) => {
   res.sendFile(path.join(__dirname, "views", "home.html"));
 });
-app.get("/login", (req, res) => {
+app.get("/login", htmlLimiter, (req, res) => {
   res.sendFile(path.join(__dirname, "views", "login.html"));
 });
-app.get("/register", (req, res) => {
+app.get("/register", htmlLimiter, (req, res) => {
   res.sendFile(path.join(__dirname, "views", "register.html"));
 });
 
