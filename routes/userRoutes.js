@@ -16,10 +16,30 @@ const deleteAccountLimiter = rateLimit({
   max: 5, // limit each IP to 5 delete-account requests per windowMs
 });
 
-router.get("/users", authMiddleware, getAllUsers);
-router.post("/users/toggle-status", authMiddleware, toggleAllUsersStatus);
-router.get("/users/distance", authMiddleware, getDistanceFromDestination);
-router.get("/users/by-days", authMiddleware, getUsersByDays);
+const userRoutesLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // limit each IP to 100 user-related requests per windowMs
+});
+
+router.get("/users", authMiddleware, userRoutesLimiter, getAllUsers);
+router.post(
+  "/users/toggle-status",
+  authMiddleware,
+  userRoutesLimiter,
+  toggleAllUsersStatus
+);
+router.get(
+  "/users/distance",
+  authMiddleware,
+  userRoutesLimiter,
+  getDistanceFromDestination
+);
+router.get(
+  "/users/by-days",
+  authMiddleware,
+  userRoutesLimiter,
+  getUsersByDays
+);
 router.delete(
   "/users/delete-account",
   authMiddleware,
