@@ -21,30 +21,25 @@ const userRoutesLimiter = rateLimit({
   max: 100, // limit each IP to 100 user-related requests per windowMs
 });
 
-router.get("/users", authMiddleware, userRoutesLimiter, getAllUsers);
+router.get("/users", userRoutesLimiter, authMiddleware, getAllUsers);
 router.post(
   "/users/toggle-status",
-  authMiddleware,
   userRoutesLimiter,
-  toggleAllUsersStatus
+  authMiddleware,
+  toggleAllUsersStatus,
 );
 router.get(
   "/users/distance",
-  authMiddleware,
   userRoutesLimiter,
-  getDistanceFromDestination
-);
-router.get(
-  "/users/by-days",
   authMiddleware,
-  userRoutesLimiter,
-  getUsersByDays
+  getDistanceFromDestination,
 );
+router.get("/users/by-days", userRoutesLimiter, authMiddleware, getUsersByDays);
 router.delete(
   "/users/delete-account",
-  authMiddleware,
   deleteAccountLimiter,
-  deleteAccount
+  authMiddleware,
+  deleteAccount,
 );
 
 module.exports = router;
