@@ -4,6 +4,11 @@ A secure, production-ready REST API built with Node.js, Express.js, and MongoDB 
 
 <hr />
 
+## 📸 Application Preview
+
+![Desktop View](./assets/desktop.png)
+![Mobile View](./assets/mobile.png)
+
 ## 📌 Overview
 
 The User Status Toggle API demonstrates:
