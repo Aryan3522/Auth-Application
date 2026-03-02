@@ -75,7 +75,12 @@ exports.loginUser = async (req, res) => {
     const { email, password } = req.body;
 
     // Validation
-    if (!email || !password) {
+    if (
+      typeof email !== "string" ||
+      typeof password !== "string" ||
+      email.trim() === "" ||
+      password.trim() === ""
+    ) {
       return res.status(400).json({
         status_code: 400,
         message: "Email and password are required",
