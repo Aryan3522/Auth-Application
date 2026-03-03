@@ -55,9 +55,9 @@ If the majority of users are active → all users become inactive
 
 If the majority of users are inactive → all users become active
 
-✔ Executed via a single bulk update
-✔ Optimized for scalability
-✔ Designed for production reliability
+✔ Executed via a single bulk update <br/>
+✔ Optimized for scalability <br/>
+✔ Designed for production reliability <br/>
 
 <hr />
 
