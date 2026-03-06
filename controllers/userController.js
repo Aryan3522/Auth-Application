@@ -151,31 +151,33 @@ exports.getUsersByDays = async (req, res) => {
 
 exports.getAllUsers = async (req, res) => {
   try {
-    const users = await User.find(
-      {},
-      {
-        name: 1,
-        email: 1,
-        address: 1,
-        latitude: 1,
-        longitude: 1,
-        status: 1,
-        registeredDay: 1,
-        _id: 0,
-      },
-    );
+    const page = Math.max(1, parseInt(req.query.page) || 1);
+    const limit = Math.min(100, Math.max(1, parseInt(req.query.limit) || 10));
+    const skip = (page - 1) * limit;
+
+    const [totalUsers, users] = await Promise.all([
+      User.countDocuments(),
+      User.find({}, { name:1, email:1, address:1, latitude:1, longitude:1, status:1, registeredDay:1, _id:0 })
+        .skip(skip)
+        .limit(limit),
+    ]);
 
     return res.status(200).json({
       status_code: 200,
       message: "Users fetched successfully",
+      pagination: {
+        currentPage: page,
+        totalPages: Math.ceil(totalUsers / limit),
+        totalUsers,
+        limit,
+        hasNextPage: page < Math.ceil(totalUsers / limit),
+        hasPrevPage: page > 1,
+      },
       users,
     });
   } catch (error) {
     console.error(error);
-    return res.status(500).json({
-      status_code: 500,
-      message: "Internal server error",
-    });
+    return res.status(500).json({ status_code: 500, message: "Internal server error" });
   }
 };
 
