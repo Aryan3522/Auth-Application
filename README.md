@@ -108,11 +108,14 @@ MongoDB (via Mongoose)
 ## ⚙️ Installation & Setup
 
 #### 1️⃣ Clone Repository
+```text
 git clone https://github.com/your-username/Auth-Application.git <br/>
 cd Auth-Application
-
+```
 #### 2️⃣ Install Dependencies
+```text
 npm install
+```
 
 #### 3️⃣ Configure Environment Variables
 
@@ -131,10 +134,14 @@ JWT_SECRET=super_secure_jwt_secret
 | JWT_SECRET | Secret key used for signing JWT tokens     |
 
 #### 4️⃣ Start Application
+```text
 npm start
+```
 
 ###### Server will be available at:
+```text
 http://localhost:5000
+```
 
 <hr />
 
